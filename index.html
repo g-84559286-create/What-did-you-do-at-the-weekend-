@@ -21,20 +21,32 @@
 </head>
 <body class="text-slate-800 flex flex-col min-h-screen pb-12">
 
-  <!-- NAVIGATION HEADER -->
+  <!-- HEADER -->
   <header class="bg-white/90 backdrop-blur-md border-b border-sky-200 sticky top-0 z-40 shadow-sm">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <!-- Teacher Wafi Avatar: All-Pink Hijab + Navy Top -->
         <div class="w-11 h-11 rounded-full bg-sky-100 border-2 border-sky-400 overflow-hidden flex-shrink-0 shadow-sm">
           <svg viewBox="0 0 200 200" class="w-full h-full">
             <circle cx="100" cy="100" r="100" fill="#bae6fd"/>
+            <!-- Navy Top -->
             <path d="M 30 200 C 30 155, 60 142, 100 142 C 140 142, 170 155, 170 200 Z" fill="#0f172a"/>
+            <!-- Face -->
             <ellipse cx="100" cy="102" rx="32" ry="38" fill="#fce7f3"/>
             <ellipse cx="87" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
             <ellipse cx="113" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
-            <path d="M 90 113 Q 100 123 110 113" stroke="#e11d48" stroke-width="2.5" fill="none"/>
+            <circle cx="85" cy="96" r="1.8" fill="#ffffff"/>
+            <circle cx="111" cy="96" r="1.8" fill="#ffffff"/>
+            <path d="M 81 88 Q 87 85 93 88" stroke="#475569" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M 107 88 Q 113 85 119 88" stroke="#475569" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M 100 99 Q 101.5 103 100 105" stroke="#f472b6" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+            <path d="M 90 113 Q 100 123 110 113" stroke="#e11d48" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="79" cy="108" rx="5" ry="3.5" fill="#f43f5e" opacity="0.3"/>
+            <ellipse cx="121" cy="108" rx="5" ry="3.5" fill="#f43f5e" opacity="0.3"/>
+            <!-- ALL PINK HIJAB -->
             <path d="M 100 24 C 62 24, 46 62, 46 102 C 46 138, 58 175, 78 195 C 88 175, 90 148, 90 142 C 80 140, 65 128, 65 102 C 65 68, 78 52, 100 52 C 122 52, 135 68, 135 102 C 135 128, 120 140, 110 142 C 110 148, 112 175, 122 195 C 142 175, 154 138, 154 102 C 154 62, 138 24, 100 24 Z" fill="#ec4899"/>
+            <path d="M 68 112 Q 100 146 132 112" stroke="#f472b6" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+            <path d="M 78 135 Q 100 162 122 135" stroke="#f472b6" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
           </svg>
         </div>
         <div>
@@ -43,182 +55,166 @@
         </div>
       </div>
 
-      <div id="pupilBadge" class="hidden flex items-center space-x-2 bg-sky-100 border border-sky-300 px-3 py-1.5 rounded-full">
-        <span class="text-xs font-bold text-sky-900" id="badgeName">Pupil Name</span>
-        <span class="text-[10px] bg-sky-200 text-sky-800 px-2 py-0.5 rounded-full font-bold" id="badgeClass">Class</span>
+      <div class="flex items-center space-x-2 bg-sky-100 border border-sky-300 px-3 py-1 rounded-full">
+        <span class="text-xs font-bold text-sky-900" id="badgeName">Pupil</span>
+        <span class="text-[10px] bg-sky-200 text-sky-800 px-2 py-0.5 rounded-full font-bold" id="badgeClass">Year 3</span>
       </div>
     </div>
   </header>
 
   <!-- MAIN CONTENT CONTAINER -->
-  <main class="max-w-4xl mx-auto px-4 pt-6 flex-grow w-full">
+  <main class="max-w-4xl mx-auto px-4 pt-4 flex-grow w-full space-y-6">
 
-    <!-- INLINE REGISTRATION CARD (DIRECT CLICK - NO FORMS) -->
-    <div id="registrationCard" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-sky-300 text-center max-w-md mx-auto mb-6">
-      <div class="w-20 h-20 mx-auto mb-2 rounded-full bg-sky-100 p-1 border-2 border-sky-400 overflow-hidden">
-        <svg viewBox="0 0 200 200" class="w-full h-full">
-          <circle cx="100" cy="100" r="100" fill="#bae6fd"/>
-          <path d="M 30 200 C 30 155, 60 142, 100 142 C 140 142, 170 155, 170 200 Z" fill="#0f172a"/>
-          <ellipse cx="100" cy="102" rx="32" ry="38" fill="#fce7f3"/>
-          <path d="M 100 24 C 62 24, 46 62, 46 102 C 46 138, 58 175, 78 195 C 88 175, 90 148, 90 142 C 80 140, 65 128, 65 102 C 65 68, 78 52, 100 52 C 122 52, 135 68, 135 102 C 135 128, 120 140, 110 142 C 110 148, 112 175, 122 195 C 142 175, 154 138, 154 102 C 154 62, 138 24, 100 24 Z" fill="#ec4899"/>
-        </svg>
-      </div>
-      <h2 class="text-xl font-bold font-fredoka text-sky-700">Welcome Pupil! 👋</h2>
-      <p class="text-xs text-slate-500 mb-4">Enter your details to join Teacher Wafi's revision:</p>
-
-      <div class="space-y-3 text-left">
+    <!-- INLINE REGISTRATION BAR (NO MODALS / NO LOCKS) -->
+    <div class="bg-white/90 backdrop-blur rounded-2xl p-4 shadow-sm border border-sky-200">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 items-end">
         <div>
-          <label class="block text-xs font-bold text-slate-600 mb-1">Pupil Name:</label>
-          <input type="text" id="pupilNameInput" placeholder="e.g. Adam / Nur Aisyah" class="w-full px-4 py-2.5 rounded-xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-sm text-slate-700 bg-sky-50/50">
+          <label class="block text-[11px] font-bold text-slate-500 mb-1 uppercase tracking-wider">Pupil Name</label>
+          <input type="text" id="pupilNameInput" placeholder="Enter name (e.g. Adam)" class="w-full px-3 py-2 rounded-xl border border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-xs text-slate-700 bg-sky-50/50">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-600 mb-1">Class:</label>
-          <input type="text" id="pupilClassInput" placeholder="e.g. 3 Princeton / 3 Malaya" class="w-full px-4 py-2.5 rounded-xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-sm text-slate-700 bg-sky-50/50">
+          <label class="block text-[11px] font-bold text-slate-500 mb-1 uppercase tracking-wider">Class</label>
+          <input type="text" id="pupilClassInput" placeholder="Enter class (e.g. 3 Princeton)" class="w-full px-3 py-2 rounded-xl border border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-xs text-slate-700 bg-sky-50/50">
         </div>
-        <button id="startBtn" type="button" class="w-full py-3 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold font-fredoka rounded-xl shadow-md text-base transition">
-          Start Learning Now 🚀
+        <button id="saveProfileBtn" type="button" class="w-full py-2 bg-sky-500 hover:bg-sky-600 text-white font-bold font-fredoka rounded-xl shadow-sm text-xs transition active:scale-95">
+          Save Pupil Info ✨
         </button>
       </div>
     </div>
 
-    <!-- MAIN APP INTERFACE -->
-    <div id="mainAppContent" class="hidden space-y-6">
+    <!-- TAB NAVIGATION -->
+    <div class="flex justify-center">
+      <div class="bg-white/90 p-1.5 rounded-2xl shadow-md border border-sky-200 flex space-x-1 max-w-md w-full">
+        <button onclick="switchTab('flashcards')" id="tab-flashcards" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all bg-sky-500 text-white shadow">
+          🎴 Verbs
+        </button>
+        <button onclick="switchTab('quiz')" id="tab-quiz" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
+          🗣️ Quiz
+        </button>
+        <button onclick="switchTab('writing')" id="tab-writing" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
+          ✍️ Writing
+        </button>
+        <button onclick="switchTab('leaderboard')" id="tab-leaderboard" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
+          🏆 Ranking
+        </button>
+      </div>
+    </div>
 
-      <!-- TAB NAVIGATION -->
-      <div class="flex justify-center mb-6">
-        <div class="bg-white/90 p-1.5 rounded-2xl shadow-md border border-sky-200 flex space-x-1 max-w-md w-full">
-          <button onclick="switchTab('flashcards')" id="tab-flashcards" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all bg-sky-500 text-white shadow">
-            🎴 Verbs
+    <!-- SECTION 1: FLASHCARDS -->
+    <section id="section-flashcards" class="block space-y-6">
+      <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 text-center max-w-xl mx-auto">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xs font-bold text-sky-500 bg-sky-50 px-3 py-1 rounded-full uppercase tracking-wider" id="cardCounter">Card 1 of 5</span>
+          <button onclick="toggleMalayTranslation()" class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full hover:bg-amber-200 transition">
+            🇲🇾 Toggle BM Translation
           </button>
-          <button onclick="switchTab('quiz')" id="tab-quiz" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
-            🗣️ Quiz
+        </div>
+
+        <div class="py-6 min-h-[200px] flex flex-col items-center justify-center">
+          <div id="flashEmoji" class="text-7xl mb-3">🏖️</div>
+          <p class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
+          <h2 id="flashPhrase" class="text-xl md:text-2xl font-bold font-fredoka text-slate-800 mb-1">At the weekend, I went to the beach.</h2>
+          <p id="flashMalay" class="text-sm text-sky-600 font-semibold hidden">(Pada hujung minggu, saya pergi ke pantai.)</p>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4 pt-2">
+          <button onclick="prevCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👈</button>
+          <button onclick="speakCurrentCard()" class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold font-fredoka rounded-2xl shadow-md flex items-center space-x-2 active:scale-95 transition">
+            <span>🔊 Listen</span>
           </button>
-          <button onclick="switchTab('writing')" id="tab-writing" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
-            ✍️ Writing
-          </button>
-          <button onclick="switchTab('leaderboard')" id="tab-leaderboard" class="flex-1 py-2 rounded-xl font-fredoka font-bold text-xs sm:text-sm transition-all text-slate-600 hover:text-sky-600">
-            🏆 Ranking
-          </button>
+          <button onclick="nextCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👉</button>
         </div>
       </div>
+    </section>
 
-      <!-- SECTION 1: FLASHCARDS -->
-      <section id="section-flashcards" class="block space-y-6">
-        <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 text-center max-w-xl mx-auto">
-          <div class="flex justify-between items-center mb-4">
-            <span class="text-xs font-bold text-sky-500 bg-sky-50 px-3 py-1 rounded-full uppercase tracking-wider" id="cardCounter">Card 1 of 5</span>
-            <button onclick="toggleMalayTranslation()" class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full hover:bg-amber-200 transition">
-              🇲🇾 Toggle BM Translation
-            </button>
-          </div>
+    <!-- SECTION 2: WEEKEND Q&A QUIZ -->
+    <section id="section-quiz" class="hidden space-y-6">
+      <div id="quizStartCard" class="bg-white rounded-3xl p-8 shadow-xl border-2 border-sky-100 text-center max-w-md mx-auto">
+        <h2 class="text-2xl font-bold font-fredoka text-sky-700 mb-2">Weekend Q&A Quiz! ⏱️</h2>
+        <p class="text-slate-600 text-sm mb-2"><strong>Question:</strong> "What did you do at the weekend?"</p>
+        <p class="text-slate-500 text-xs mb-6">Answer 5 Get Smart Plus 3 questions as fast as you can to get ranked on the Leaderboard!</p>
+        <button onclick="startQuiz()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold font-fredoka rounded-xl shadow-lg text-lg active:scale-95 transition">
+          Start Quiz Now! 🚀
+        </button>
+      </div>
 
-          <div class="py-6 min-h-[200px] flex flex-col items-center justify-center">
-            <div id="flashEmoji" class="text-7xl mb-3">🏖️</div>
-            <p class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
-            <h2 id="flashPhrase" class="text-xl md:text-2xl font-bold font-fredoka text-slate-800 mb-1">At the weekend, I went to the beach.</h2>
-            <p id="flashMalay" class="text-sm text-sky-600 font-semibold hidden">(Pada hujung minggu, saya pergi ke pantai.)</p>
-          </div>
-
-          <div class="flex items-center justify-center space-x-4 pt-2">
-            <button onclick="prevCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👈</button>
-            <button onclick="speakCurrentCard()" class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold font-fredoka rounded-2xl shadow-md flex items-center space-x-2 active:scale-95 transition">
-              <span>🔊 Listen</span>
-            </button>
-            <button onclick="nextCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👉</button>
-          </div>
+      <div id="quizActiveCard" class="hidden bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-md mx-auto">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
+          <span class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full" id="quizProgress">Question 1/5</span>
+          <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full flex items-center space-x-1">
+            <span>⏱️ Time:</span>
+            <span id="quizTimerDisplay">0s</span>
+          </span>
         </div>
-      </section>
 
-      <!-- SECTION 2: WEEKEND Q&A QUIZ -->
-      <section id="section-quiz" class="hidden space-y-6">
-        <div id="quizStartCard" class="bg-white rounded-3xl p-8 shadow-xl border-2 border-sky-100 text-center max-w-md mx-auto">
-          <h2 class="text-2xl font-bold font-fredoka text-sky-700 mb-2">Weekend Q&A Quiz! ⏱️</h2>
-          <p class="text-slate-600 text-sm mb-2"><strong>Question:</strong> "What did you do at the weekend?"</p>
-          <p class="text-slate-500 text-xs mb-6">Answer 5 Get Smart Plus 3 questions as fast as you can to get ranked on the Leaderboard!</p>
-          <button onclick="startQuiz()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold font-fredoka rounded-xl shadow-lg text-lg active:scale-95 transition">
-            Start Quiz Now! 🚀
+        <div class="text-center py-2">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
+          <div id="quizQuestionEmoji" class="text-6xl my-2">🏖️</div>
+        </div>
+
+        <div id="quizOptionsContainer" class="space-y-3 pt-2"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: DIGITAL WRITING WALL -->
+    <section id="section-writing" class="hidden space-y-6">
+      <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-2xl mx-auto">
+        <div class="text-center mb-4">
+          <h2 class="text-2xl font-bold font-fredoka text-sky-700">Digital Holiday Wall Board ✍️</h2>
+          <p class="text-xs text-slate-500 mt-1">Type your own sentences about what you did at the weekend below!</p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-left text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">
+              Write your sentence:
+            </label>
+            <textarea id="writingInput" rows="3" placeholder="At the weekend, I..." class="w-full px-4 py-3 rounded-2xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-slate-700 bg-sky-50/30 text-sm resize-none"></textarea>
+          </div>
+
+          <button onclick="submitWritingSentence()" class="w-full py-3 bg-amber-400 hover:bg-amber-500 active:scale-95 text-amber-950 font-bold font-fredoka rounded-2xl shadow-md transition text-base">
+            📌 Post Sentence to Class Wall
           </button>
         </div>
 
-        <div id="quizActiveCard" class="hidden bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-md mx-auto">
-          <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
-            <span class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full" id="quizProgress">Question 1/5</span>
-            <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full flex items-center space-x-1">
-              <span>⏱️ Time:</span>
-              <span id="quizTimerDisplay">0s</span>
-            </span>
-          </div>
+        <div class="mt-8 border-t border-slate-100 pt-6">
+          <h3 class="font-fredoka font-bold text-slate-700 text-base mb-4 flex items-center justify-between">
+            <span>Class Wall Submissions 📝</span>
+            <span id="wallCountBadge" class="text-xs bg-sky-100 text-sky-800 px-2.5 py-0.5 rounded-full font-bold">0 posts</span>
+          </h3>
 
-          <div class="text-center py-2">
-            <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
-            <div id="quizQuestionEmoji" class="text-6xl my-2">🏖️</div>
-          </div>
-
-          <div id="quizOptionsContainer" class="space-y-3 pt-2"></div>
+          <div id="writingWallContainer" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- SECTION 3: DIGITAL WRITING WALL -->
-      <section id="section-writing" class="hidden space-y-6">
-        <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-2xl mx-auto">
-          <div class="text-center mb-4">
-            <h2 class="text-2xl font-bold font-fredoka text-sky-700">Digital Holiday Wall Board ✍️</h2>
-            <p class="text-xs text-slate-500 mt-1">Type your own sentences about what you did at the weekend below!</p>
+    <!-- SECTION 4: LIVE LEADERBOARD -->
+    <section id="section-leaderboard" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-2xl mx-auto">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div>
+            <h2 class="text-xl font-bold font-fredoka text-sky-700">Kedudukan Murid Teacher Wafi 🏆</h2>
+            <p class="text-xs text-slate-500">Year 3 Class Ranking</p>
           </div>
-
-          <div class="space-y-4">
-            <div>
-              <label class="block text-left text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">
-                Write your sentence:
-              </label>
-              <textarea id="writingInput" rows="3" placeholder="At the weekend, I..." class="w-full px-4 py-3 rounded-2xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-slate-700 bg-sky-50/30 text-sm resize-none"></textarea>
-            </div>
-
-            <button onclick="submitWritingSentence()" class="w-full py-3 bg-amber-400 hover:bg-amber-500 active:scale-95 text-amber-950 font-bold font-fredoka rounded-2xl shadow-md transition text-base">
-              📌 Post Sentence to Class Wall
-            </button>
-          </div>
-
-          <div class="mt-8 border-t border-slate-100 pt-6">
-            <h3 class="font-fredoka font-bold text-slate-700 text-base mb-4 flex items-center justify-between">
-              <span>Class Wall Submissions 📝</span>
-              <span id="wallCountBadge" class="text-xs bg-sky-100 text-sky-800 px-2.5 py-0.5 rounded-full font-bold">0 posts</span>
-            </h3>
-
-            <div id="writingWallContainer" class="space-y-3 max-h-80 overflow-y-auto pr-1"></div>
-          </div>
+          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">Live</span>
         </div>
-      </section>
 
-      <!-- SECTION 4: LIVE LEADERBOARD -->
-      <section id="section-leaderboard" class="hidden space-y-4">
-        <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-2xl mx-auto">
-          <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-xl font-bold font-fredoka text-sky-700">Kedudukan Murid Teacher Wafi 🏆</h2>
-              <p class="text-xs text-slate-500">Year 3 Class Ranking</p>
-            </div>
-            <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full">Live</span>
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="w-full text-left text-sm">
-              <thead>
-                <tr class="text-xs font-bold text-slate-400 border-b border-slate-100 uppercase tracking-wider">
-                  <th class="py-2 px-3">Rank</th>
-                  <th class="py-2 px-3">Pupil Name</th>
-                  <th class="py-2 px-3">Class</th>
-                  <th class="py-2 px-3 text-right">Score</th>
-                  <th class="py-2 px-3 text-right">Time</th>
-                </tr>
-              </thead>
-              <tbody id="leaderboardBody" class="divide-y divide-slate-100"></tbody>
-            </table>
-          </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="text-xs font-bold text-slate-400 border-b border-slate-100 uppercase tracking-wider">
+                <th class="py-2 px-3">Rank</th>
+                <th class="py-2 px-3">Pupil Name</th>
+                <th class="py-2 px-3">Class</th>
+                <th class="py-2 px-3 text-right">Score</th>
+                <th class="py-2 px-3 text-right">Time</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody" class="divide-y divide-slate-100"></tbody>
+          </table>
         </div>
-      </section>
-
-    </div>
+      </div>
+    </section>
 
   </main>
 
@@ -238,11 +234,10 @@
     let localLeaderboard = [];
     let writingWallPosts = [];
 
-    // DIRECT BUTTON CLICK HANDLER (NO FORM SUBMIT LOCKS)
     document.addEventListener('DOMContentLoaded', function() {
-      const startBtn = document.getElementById('startBtn');
-      if (startBtn) {
-        startBtn.addEventListener('click', function() {
+      const saveBtn = document.getElementById('saveProfileBtn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', function() {
           const nameInput = document.getElementById('pupilNameInput');
           const classInput = document.getElementById('pupilClassInput');
 
@@ -251,16 +246,16 @@
 
           document.getElementById('badgeName').innerText = currentPupil.name;
           document.getElementById('badgeClass').innerText = currentPupil.class;
-          document.getElementById('pupilBadge').classList.remove('hidden');
 
-          document.getElementById('registrationCard').style.display = 'none';
-          document.getElementById('mainAppContent').classList.remove('hidden');
-
-          updateFlashcardUI();
-          renderLeaderboard();
-          renderWritingWall();
+          if (typeof confetti === 'function') {
+            confetti({ particleCount: 30, spread: 40, origin: { y: 0.2 } });
+          }
         });
       }
+
+      updateFlashcardUI();
+      renderLeaderboard();
+      renderWritingWall();
     });
 
     function switchTab(tab) {
@@ -400,4 +395,86 @@
       if (!text) return;
 
       writingWallPosts.unshift({
-        name: current
+        name: currentPupil.name,
+        class: currentPupil.class,
+        text: text,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
+
+      input.value = '';
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 50, spread: 50, origin: { y: 0.7 } });
+      }
+      renderWritingWall();
+    }
+
+    function renderWritingWall() {
+      const container = document.getElementById('writingWallContainer');
+      const badge = document.getElementById('wallCountBadge');
+      if (badge) badge.innerText = `${writingWallPosts.length} posts`;
+
+      if (!container) return;
+
+      if (writingWallPosts.length === 0) {
+        container.innerHTML = `
+          <div class="p-6 text-center text-slate-400 text-sm font-semibold bg-sky-50/50 rounded-2xl border border-dashed border-sky-200">
+            No writing posts yet! Type your sentence above and post it! ✍️
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      writingWallPosts.forEach(post => {
+        const card = document.createElement('div');
+        card.className = 'bg-amber-50/80 border border-amber-200 p-3.5 rounded-2xl shadow-sm text-left';
+        card.innerHTML = `
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-bold text-sky-800 text-sm">${post.name} <span class="text-xs text-sky-600 font-normal">(${post.class})</span></span>
+            <span class="text-[10px] text-amber-700 bg-amber-100 px-2 py-0.5 rounded-full font-bold">${post.time}</span>
+          </div>
+          <p class="text-slate-800 font-semibold text-sm">"${post.text}"</p>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderLeaderboard() {
+      const tbody = document.getElementById('leaderboardBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      if (localLeaderboard.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-8 text-center text-slate-400 text-sm font-semibold">
+              No entries yet! Complete the <strong>Quiz</strong> to rank here. 🏖️
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      localLeaderboard.sort((a, b) => b.score - a.score || a.time - b.time);
+
+      localLeaderboard.forEach((entry, idx) => {
+        let badge = `${idx + 1}`;
+        if (idx === 0) badge = '🥇 1';
+        if (idx === 1) badge = '🥈 2';
+        if (idx === 2) badge = '🥉 3';
+
+        const row = document.createElement('tr');
+        row.className = idx % 2 === 0 ? 'bg-sky-50/40' : 'bg-white';
+        row.innerHTML = `
+          <td class="py-3 px-3 font-bold ${idx < 3 ? 'text-amber-600' : 'text-slate-500'}">${badge}</td>
+          <td class="py-3 px-3 font-bold text-slate-800">${entry.name}</td>
+          <td class="py-3 px-3 text-slate-500 text-xs">${entry.class}</td>
+          <td class="py-3 px-3 text-right font-bold text-emerald-600">${entry.score}/5</td>
+          <td class="py-3 px-3 text-right text-xs font-semibold text-amber-600">${entry.time}s</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+  </script>
+</body>
+</html>
