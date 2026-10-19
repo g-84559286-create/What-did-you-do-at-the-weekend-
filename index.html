@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year 3 English: On Holiday with Teacher Wafi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(180deg, #0ea5e9 0%, #38bdf8 40%, #fef08a 100%);
+      min-height: 100vh;
+    }
+    .font-fredoka { font-family: 'Fredoka', cursive; }
+    .card-flip { perspective: 1000px; }
+    .card-inner { transition: transform 0.6s; transform-style: preserve-3d; }
+    .card-flipped .card-inner { transform: rotateY(180deg); }
+    .card-front, .card-back { backface-visibility: hidden; }
+    .card-back { transform: rotateY(180deg); }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+      100% { transform: translateY(0px); }
+    }
+    .animate-float { animation: float 3s ease-in-out infinite; }
+  </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen pb-12">
+
+  <!-- REGISTRATION MODAL -->
+  <div id="registrationModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl text-center border-4 border-sky-300 relative">
+      <div class="w-28 h-28 mx-auto -mt-16 mb-3 rounded-full bg-sky-100 p-1 border-4 border-sky-400 shadow-lg overflow-hidden animate-float">
+        <svg viewBox="0 0 200 200" class="w-full h-full">
+          <circle cx="100" cy="100" r="100" fill="#bae6fd"/>
+          <path d="M 30 200 C 30 155, 60 142, 100 142 C 140 142, 170 155, 170 200 Z" fill="#0f172a"/>
+          <ellipse cx="100" cy="102" rx="32" ry="38" fill="#fce7f3"/>
+          <ellipse cx="87" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+          <ellipse cx="113" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+          <circle cx="85" cy="96" r="1.8" fill="#ffffff"/>
+          <circle cx="111" cy="96" r="1.8" fill="#ffffff"/>
+          <path d="M 81 88 Q 87 85 93 88" stroke="#475569" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M 107 88 Q 113 85 119 88" stroke="#475569" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M 100 99 Q 101.5 103 100 105" stroke="#f472b6" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M 90 113 Q 100 123 110 113" stroke="#e11d48" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="79" cy="108" rx="5" ry="3.5" fill="#f43f5e" opacity="0.3"/>
+          <ellipse cx="121" cy="108" rx="5" ry="3.5" fill="#f43f5e" opacity="0.3"/>
+          <path d="M 100 24 C 62 24, 46 62, 46 102 C 46 138, 58 175, 78 195 C 88 175, 90 148, 90 142 C 80 140, 65 128, 65 102 C 65 68, 78 52, 100 52 C 122 52, 135 68, 135 102 C 135 128, 120 140, 110 142 C 110 148, 112 175, 122 195 C 142 175, 154 138, 154 102 C 154 62, 138 24, 100 24 Z" fill="#e1757e"/>
+          <path d="M 68 112 Q 100 146 132 112" stroke="#be123c" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+          <path d="M 78 135 Q 100 162 122 135" stroke="#be123c" stroke-width="2" fill="none" opacity="0.35" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h2 class="text-2xl font-bold font-fredoka text-sky-600 mb-1">Welcome Pupil! 👋</h2>
+      <p class="text-slate-600 text-sm mb-4">I'm <strong>Teacher Wafi</strong>. Enter your name and class to start Get Smart Plus 3 (Unit 9: On Holiday) revision!</p>
+
+      <form id="regForm" onsubmit="submitRegistration(event)" class="space-y-4">
+        <div>
+          <label class="block text-left text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Pupil Name</label>
+          <input type="text" id="pupilNameInput" required placeholder="e.g. Adam / Nur Aisyah" class="w-full px-4 py-3 rounded-xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-slate-700 bg-sky-50/50">
+        </div>
+
+        <div>
+          <label class="block text-left text-xs font-bold text-slate-600 mb-1 uppercase tracking-wider">Class</label>
+          <input type="text" id="pupilClassInput" required placeholder="e.g. 3 Princeton / 3 Malaya" class="w-full px-4 py-3 rounded-xl border-2 border-sky-200 focus:border-sky-500 focus:outline-none font-semibold text-slate-700 bg-sky-50/50">
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-sky-500 hover:bg-sky-600 active:scale-95 text-white font-bold font-fredoka rounded-xl shadow-lg shadow-sky-300/50 transition duration-200 text-lg">
+          Start Learning Now 🚀
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- NAVIGATION HEADER -->
+  <header class="bg-white/80 backdrop-blur-md border-b border-sky-200 sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-sky-100 border-2 border-sky-400 overflow-hidden flex-shrink-0">
+          <svg viewBox="0 0 200 200" class="w-full h-full">
+            <circle cx="100" cy="100" r="100" fill="#bae6fd"/>
+            <path d="M 30 200 C 30 155, 60 142, 100 142 C 140 142, 170 155, 170 200 Z" fill="#0f172a"/>
+            <ellipse cx="100" cy="102" rx="32" ry="38" fill="#fce7f3"/>
+            <ellipse cx="87" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+            <ellipse cx="113" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+            <path d="M 90 113 Q 100 123 110 113" stroke="#e11d48" stroke-width="2.5" fill="none"/>
+            <path d="M 100 24 C 62 24, 46 62, 46 102 C 46 138, 58 175, 78 195 C 88 175, 90 148, 90 142 C 80 140, 65 128, 65 102 C 65 68, 78 52, 100 52 C 122 52, 135 68, 135 102 C 135 128, 120 140, 110 142 C 110 148, 112 175, 122 195 C 142 175, 154 138, 154 102 C 154 62, 138 24, 100 24 Z" fill="#e1757e"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-fredoka text-lg md:text-xl font-bold text-sky-700 leading-tight">On Holiday 🏖️</h1>
+          <p class="text-xs text-slate-500 font-semibold">Get Smart Plus 3 • Teacher Wafi</p>
+        </div>
+      </div>
+
+      <div id="pupilBadge" class="hidden flex items-center space-x-2 bg-sky-50 border border-sky-200 px-3 py-1.5 rounded-full">
+        <span class="text-xs font-bold text-sky-800" id="badgeName">Pupil Name</span>
+        <span class="text-[10px] bg-sky-200 text-sky-800 px-2 py-0.5 rounded-full font-bold" id="badgeClass">Class</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-5xl mx-auto px-4 pt-6 flex-grow w-full">
+
+    <!-- TAB NAVIGATION -->
+    <div class="flex justify-center mb-6">
+      <div class="bg-white/90 p-1.5 rounded-2xl shadow-md border border-sky-200 flex space-x-1 max-w-md w-full">
+        <button onclick="switchTab('flashcards')" id="tab-flashcards" class="flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all bg-sky-500 text-white shadow">
+          🎴 Verbs
+        </button>
+        <button onclick="switchTab('memory')" id="tab-memory" class="flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all text-slate-600 hover:text-sky-600">
+          🧠 Memory
+        </button>
+        <button onclick="switchTab('quiz')" id="tab-quiz" class="flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all text-slate-600 hover:text-sky-600">
+          🗣️ Q&A Quiz
+        </button>
+        <button onclick="switchTab('leaderboard')" id="tab-leaderboard" class="flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all text-slate-600 hover:text-sky-600">
+          🏆 Ranking
+        </button>
+      </div>
+    </div>
+
+    <!-- SECTION 1: FLASHCARDS -->
+    <section id="section-flashcards" class="block space-y-6">
+      <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 text-center max-w-xl mx-auto">
+        <div class="flex justify-between items-center mb-4">
+          <span class="text-xs font-bold text-sky-500 bg-sky-50 px-3 py-1 rounded-full uppercase tracking-wider" id="cardCounter">Card 1 of 8</span>
+          <button onclick="toggleMalayTranslation()" class="text-xs font-bold bg-amber-100 text-amber-800 px-3 py-1 rounded-full hover:bg-amber-200 transition">
+            🇲🇾 Toggle BM Translation
+          </button>
+        </div>
+
+        <div class="py-6 min-h-[220px] flex flex-col items-center justify-center">
+          <div id="flashEmoji" class="text-7xl mb-4 transform hover:scale-110 transition duration-300">🏖️</div>
+          <p class="text-xs font-bold text-amber-600 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
+          <h2 id="flashPhrase" class="text-2xl md:text-3xl font-bold font-fredoka text-slate-800 mb-1">At the weekend, I went to the beach.</h2>
+          <p id="flashMalay" class="text-base text-sky-600 font-semibold hidden">(Pada hujung minggu, saya pergi ke pantai.)</p>
+        </div>
+
+        <div class="flex items-center justify-center space-x-4 pt-2">
+          <button onclick="prevCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👈</button>
+          <button onclick="speakCurrentCard()" class="px-6 py-3 bg-amber-400 hover:bg-amber-500 text-amber-950 font-bold font-fredoka rounded-2xl shadow-lg flex items-center space-x-2 active:scale-95 transition">
+            <span>🔊</span>
+            <span>Listen Audio</span>
+          </button>
+          <button onclick="nextCard()" class="p-3 bg-slate-100 hover:bg-slate-200 rounded-full text-slate-600 transition active:scale-95">👉</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MEMORY MATCH GAME -->
+    <section id="section-memory" class="hidden space-y-4">
+      <div class="flex justify-between items-center max-w-2xl mx-auto bg-white/80 backdrop-blur px-5 py-3 rounded-2xl shadow border border-sky-200">
+        <span class="font-fredoka font-bold text-sky-700 text-sm">Moves: <span id="moveCount" class="text-slate-800">0</span></span>
+        <button onclick="resetMemoryGame()" class="text-xs font-bold bg-sky-500 hover:bg-sky-600 text-white px-3 py-1.5 rounded-xl shadow transition">
+          🔄 Restart Game
+        </button>
+      </div>
+
+      <div id="memoryGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto"></div>
+    </section>
+
+    <!-- SECTION 3: WEEKEND Q&A QUIZ -->
+    <section id="section-quiz" class="hidden space-y-6">
+      <div id="quizStartCard" class="bg-white rounded-3xl p-8 shadow-xl border-2 border-sky-100 text-center max-w-md mx-auto">
+        <div class="w-20 h-20 mx-auto mb-4 bg-sky-100 rounded-full p-1 border-2 border-sky-300">
+          <svg viewBox="0 0 200 200" class="w-full h-full">
+            <circle cx="100" cy="100" r="100" fill="#bae6fd"/>
+            <path d="M 30 200 C 30 155, 60 142, 100 142 C 140 142, 170 155, 170 200 Z" fill="#0f172a"/>
+            <ellipse cx="100" cy="102" rx="32" ry="38" fill="#fce7f3"/>
+            <ellipse cx="87" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+            <ellipse cx="113" cy="98" rx="4.5" ry="6.5" fill="#0f172a"/>
+            <path d="M 90 113 Q 100 123 110 113" stroke="#e11d48" stroke-width="2.5" fill="none"/>
+            <path d="M 100 24 C 62 24, 46 62, 46 102 C 46 138, 58 175, 78 195 C 88 175, 90 148, 90 142 C 80 140, 65 128, 65 102 C 65 68, 78 52, 100 52 C 122 52, 135 68, 135 102 C 135 128, 120 140, 110 142 C 110 148, 112 175, 122 195 C 142 175, 154 138, 154 102 C 154 62, 138 24, 100 24 Z" fill="#e1757e"/>
+          </svg>
+        </div>
+        <h2 class="text-2xl font-bold font-fredoka text-sky-700 mb-2">Weekend Q&A Quiz! ⏱️</h2>
+        <p class="text-slate-600 text-sm mb-2"><strong>Question:</strong> "What did you do at the weekend?"</p>
+        <p class="text-slate-500 text-xs mb-6">Answer 8 Get Smart Plus 3 (Unit 9) questions as fast as you can to get on the Leaderboard!</p>
+        <button onclick="startQuiz()" class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-bold font-fredoka rounded-xl shadow-lg shadow-emerald-200 text-lg active:scale-95 transition">
+          Start Quiz Now! 🚀
+        </button>
+      </div>
+
+      <div id="quizActiveCard" class="hidden bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-md mx-auto">
+        <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-100">
+          <span class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full" id="quizProgress">Question 1/8</span>
+          <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full flex items-center space-x-1">
+            <span>⏱️ Time:</span>
+            <span id="quizTimerDisplay">0s</span>
+          </span>
+        </div>
+
+        <div class="text-center py-3">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">What did you do at the weekend?</p>
+          <div id="quizQuestionEmoji" class="text-7xl my-2 animate-bounce">🏖️</div>
+        </div>
+
+        <div id="quizOptionsContainer" class="space-y-3 pt-2"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: LIVE LEADERBOARD -->
+    <section id="section-leaderboard" class="hidden space-y-4">
+      <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-sky-100 max-w-2xl mx-auto">
+        <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+          <div>
+            <h2 class="text-xl font-bold font-fredoka text-sky-700">Kedudukan Murid Teacher Wafi 🏆</h2>
+            <p class="text-xs text-slate-500">Year 3 Class Ranking</p>
+          </div>
+          <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-1 rounded-full flex items-center space-x-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Data</span>
+          </span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm">
+            <thead>
+              <tr class="text-xs font-bold text-slate-400 border-b border-slate-100 uppercase tracking-wider">
+                <th class="py-2 px-3">Rank</th>
+                <th class="py-2 px-3">Pupil Name</th>
+                <th class="py-2 px-3">Class</th>
+                <th class="py-2 px-3 text-right">Score</th>
+                <th class="py-2 px-3 text-right">Time</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody" class="divide-y divide-slate-100"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RESULT MODAL -->
+  <div id="resultModal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md flex items-center justify-center p-4 z-50 hidden">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full shadow-2xl text-center border-4 border-amber-300 relative">
+      <div class="text-5xl mb-2">🎉</div>
+      <h2 class="text-2xl font-bold font-fredoka text-amber-600 mb-1">Great Job Year 3!</h2>
+      <p class="text-xs text-slate-500 mb-4">Quiz Completed Successfully</p>
+
+      <div class="bg-gradient-to-b from-sky-50 to-amber-50 p-4 rounded-2xl border border-amber-200 mb-6 text-left space-y-2">
+        <div class="flex justify-between text-sm"><span class="text-slate-500">Pupil:</span> <strong id="resName" class="text-slate-800">Adam</strong></div>
+        <div class="flex justify-between text-sm"><span class="text-slate-500">Class:</span> <strong id="resClass" class="text-slate-800">3 Princeton</strong></div>
+        <div class="flex justify-between text-sm"><span class="text-slate-500">Score:</span> <strong id="resScore" class="text-emerald-600 font-bold">8 / 8</strong></div>
+        <div class="flex justify-between text-sm"><span class="text-slate-500">Time Taken:</span> <strong id="resTime" class="text-amber-600 font-bold">24s</strong></div>
+      </div>
+
+      <button onclick="closeResultModalAndShowLeaderboard()" class="w-full py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold font-fredoka rounded-xl shadow-lg transition">
+        View Leaderboard Ranking 🏆
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // EXACT GET SMART PLUS 3 (UNIT 9: ON HOLIDAY) VOCABULARY SET
+    const vocabList = [
+      { id: 1, action: "went to the beach", sentence: "At the weekend, I went to the beach.", malay: "Pergi ke pantai", emoji: "🏖️" },
+      { id: 2, action: "found pretty shells", sentence: "At the weekend, I found pretty shells.", malay: "Mencari/menjumpai kulit kerang yang cantik", emoji: "🐚" },
+      { id: 3, action: "bought a postcard", sentence: "At the weekend, I bought a postcard.", malay: "Membeli poskad", emoji: "✉️" },
+      { id: 4, action: "went to the shopping centre", sentence: "At the weekend, I went to the shopping centre.", malay: "Pergi ke pusat membeli-belah", emoji: "🛍️" },
+      { id: 5, action: "walked on the beach", sentence: "At the weekend, I walked on the beach.", malay: "Berjalan-jalan di pantai", emoji: "🚶‍♂️" },
+      { id: 6, action: "looked at the stars", sentence: "At the weekend, I looked at the stars.", malay: "Melihat bintang-bintang", emoji: "🌟" },
+      { id: 7, action: "ate ice cream", sentence: "At the weekend, I ate ice cream.", malay: "Makan ais krim", emoji: "🍦" },
+      { id: 8, action: "listened to music", sentence: "At the weekend, I listened to music.", malay: "Mendengar muzik", emoji: "🎧" }
+    ];
+
+    let currentPupil = { name: '', class: '' };
+    let currentFlashIndex = 0;
+    let showMalay = false;
+    let localLeaderboard = [];
+
+    function submitRegistration(e) {
+      e.preventDefault();
+      const name = document.getElementById('pupilNameInput').value.trim();
+      const pClass = document.getElementById('pupilClassInput').value.trim();
+
+      if (!name || !pClass) return;
+
+      currentPupil = { name, class: pClass };
+      document.getElementById('badgeName').innerText = name;
+      document.getElementById('badgeClass').innerText = pClass;
+      document.getElementById('pupilBadge').classList.remove('hidden');
+      document.getElementById('pupilBadge').classList.add('flex');
+
+      document.getElementById('registrationModal').classList.add('hidden');
+      updateFlashcardUI();
+      renderLeaderboard();
+    }
+
+    function switchTab(tab) {
+      ['flashcards', 'memory', 'quiz', 'leaderboard'].forEach(t => {
+        document.getElementById(`section-${t}`).classList.add('hidden');
+        const btn = document.getElementById(`tab-${t}`);
+        btn.className = 'flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all text-slate-600 hover:text-sky-600';
+      });
+
+      document.getElementById(`section-${tab}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-${tab}`);
+      activeBtn.className = 'flex-1 py-2.5 rounded-xl font-fredoka font-bold text-sm transition-all bg-sky-500 text-white shadow';
+
+      if (tab === 'memory') resetMemoryGame();
+      if (tab === 'leaderboard') renderLeaderboard();
+    }
+
+    function updateFlashcardUI() {
+      const item = vocabList[currentFlashIndex];
+      document.getElementById('flashEmoji').innerText = item.emoji;
+      document.getElementById('flashPhrase').innerText = item.sentence;
+      document.getElementById('flashMalay').innerText = `(${item.malay})`;
+      document.getElementById('cardCounter').innerText = `Card ${currentFlashIndex + 1} of ${vocabList.length}`;
+    }
+
+    function prevCard() {
+      currentFlashIndex = (currentFlashIndex - 1 + vocabList.length) % vocabList.length;
+      updateFlashcardUI();
+    }
+
+    function nextCard() {
+      currentFlashIndex = (currentFlashIndex + 1) % vocabList.length;
+      updateFlashcardUI();
+    }
+
+    function toggleMalayTranslation() {
+      showMalay = !showMalay;
+      const el = document.getElementById('flashMalay');
+      if (showMalay) el.classList.remove('hidden');
+      else el.classList.add('hidden');
+    }
+
+    function speakCurrentCard() {
+      const text = vocabList[currentFlashIndex].sentence;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    let memoryCards = [];
+    let flippedCards = [];
+    let moveCount = 0;
+
+    function resetMemoryGame() {
+      moveCount = 0;
+      document.getElementById('moveCount').innerText = moveCount;
+      flippedCards = [];
+
+      const deck = [];
+      vocabList.forEach((item, index) => {
+        deck.push({ id: index, type: 'text', val: item.action, matchId: index });
+        deck.push({ id: index, type: 'emoji', val: item.emoji, matchId: index });
+      });
+
+      deck.sort(() => Math.random() - 0.5);
+      memoryCards = deck;
+
+      const grid = document.getElementById('memoryGrid');
+      grid.innerHTML = '';
+
+      deck.forEach((card, i) => {
+        const cardEl = document.createElement('div');
+        cardEl.className = 'card-flip h-24 cursor-pointer';
+        cardEl.onclick = () => handleCardClick(i, cardEl);
+        cardEl.innerHTML = `
+          <div class="card-inner w-full h-full relative rounded-2xl shadow-md transition-transform duration-500">
+            <div class="card-front absolute inset-0 bg-sky-400 rounded-2xl flex items-center justify-center text-white font-bold text-2xl border-2 border-sky-300">
+              🏝️
+            </div>
+            <div class="card-back absolute inset-0 bg-white rounded-2xl flex items-center justify-center p-2 text-center font-bold text-xs text-slate-800 border-2 border-amber-300">
+              ${card.val}
+            </div>
+          </div>
+        `;
+        grid.appendChild(cardEl);
+      });
+    }
+
+    function handleCardClick(index, cardEl) {
+      if (flippedCards.length >= 2 || cardEl.classList.contains('card-flipped')) return;
+
+      cardEl.classList.add('card-flipped');
+      flippedCards.push({ index, cardEl, data: memoryCards[index] });
+
+      if (flippedCards.length === 2) {
+        moveCount++;
+        document.getElementById('moveCount').innerText = moveCount;
+
+        const [c1, c2] = flippedCards;
+        if (c1.data.matchId === c2.data.matchId) {
+          flippedCards = [];
+        } else {
+          setTimeout(() => {
+            c1.cardEl.classList.remove('card-flipped');
+            c2.cardEl.classList.remove('card-flipped');
+            flippedCards = [];
+          }, 1000);
+        }
+      }
+    }
+
+    let quizQuestions = [];
+    let currentQuizIdx = 0;
+    let quizScore = 0;
+    let quizTimer = 0;
+    let quizInterval = null;
+
+    function startQuiz() {
+      document.getElementById('quizStartCard').classList.add('hidden');
+      document.getElementById('quizActiveCard').classList.remove('hidden');
+
+      quizQuestions = [...vocabList].sort(() => Math.random() - 0.5);
+      currentQuizIdx = 0;
+      quizScore = 0;
+      quizTimer = 0;
+
+      document.getElementById('quizTimerDisplay').innerText = '0s';
+      clearInterval(quizInterval);
+      quizInterval = setInterval(() => {
+        quizTimer++;
+        document.getElementById('quizTimerDisplay').innerText = `${quizTimer}s`;
+      }, 1000);
+
+      renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+      const q = quizQuestions[currentQuizIdx];
+      document.getElementById('quizProgress').innerText = `Question ${currentQuizIdx + 1}/8`;
+      document.getElementById('quizQuestionEmoji').innerText = q.emoji;
+
+      const optionsContainer = document.getElementById('quizOptionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const wrong = vocabList.filter(v => v.id !== q.id).sort(() => Math.random() - 0.5).slice(0, 2);
+      const opts = [q, ...wrong].sort(() => Math.random() - 0.5);
+
+      opts.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'w-full py-3 px-4 bg-sky-50 hover:bg-sky-100 border-2 border-sky-200 rounded-2xl font-fredoka font-bold text-slate-700 text-left transition active:scale-98 flex items-center justify-between text-xs sm:text-sm';
+        btn.innerHTML = `<span>At the weekend, I <strong>${opt.action}</strong>.</span> <span class="text-sky-400">➡️</span>`;
+        btn.onclick = () => selectQuizAnswer(opt.id === q.id);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function selectQuizAnswer(isCorrect) {
+      if (isCorrect) quizScore++;
+
+      currentQuizIdx++;
+      if (currentQuizIdx < quizQuestions.length) {
+        renderQuizQuestion();
+      } else {
+        finishQuiz();
+      }
+    }
+
+    function finishQuiz() {
+      clearInterval(quizInterval);
+
+      document.getElementById('resName').innerText = currentPupil.name || 'Pupil';
+      document.getElementById('resClass').innerText = currentPupil.class || 'Year 3';
+      document.getElementById('resScore').innerText = `${quizScore} / 8`;
+      document.getElementById('resTime').innerText = `${quizTimer}s`;
+
+      localLeaderboard.push({
+        name: currentPupil.name || 'Pupil',
+        class: currentPupil.class || 'Year 3',
+        score: quizScore,
+        time: quizTimer,
+        timestamp: new Date().toISOString()
+      });
+
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+      document.getElementById('resultModal').classList.remove('hidden');
+    }
+
+    function closeResultModalAndShowLeaderboard() {
+      document.getElementById('resultModal').classList.add('hidden');
+      document.getElementById('quizStartCard').classList.remove('hidden');
+      document.getElementById('quizActiveCard').classList.add('hidden');
+      switchTab('leaderboard');
+    }
+
+    function renderLeaderboard() {
+      const tbody = document.getElementById('leaderboardBody');
+      tbody.innerHTML = '';
+
+      if (localLeaderboard.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="py-8 text-center text-slate-400 text-sm font-semibold">
+              No pupil submissions yet! Complete the <strong>Weekend Q&A Quiz</strong> to get ranked first. 🏖️
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      localLeaderboard.sort((a, b) => b.score - a.score || a.time - b.time);
+
+      localLeaderboard.forEach((entry, idx) => {
+        let badge = `${idx + 1}`;
+        if (idx === 0) badge = '🥇 1';
+        if (idx === 1) badge = '🥈 2';
+        if (idx === 2) badge = '🥉 3';
+
+        const row = document.createElement('tr');
+        row.className = idx % 2 === 0 ? 'bg-sky-50/40' : 'bg-white';
+        row.innerHTML = `
+          <td class="py-3 px-3 font-bold ${idx < 3 ? 'text-amber-600' : 'text-slate-500'}">${badge}</td>
+          <td class="py-3 px-3 font-bold text-slate-800">${entry.name}</td>
+          <td class="py-3 px-3 text-slate-500 text-xs">${entry.class}</td>
+          <td class="py-3 px-3 text-right font-bold text-emerald-600">${entry.score}/8</td>
+          <td class="py-3 px-3 text-right text-xs font-semibold text-amber-600">${entry.time}s</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    window.onload = () => {
+      renderLeaderboard();
+    };
+  </script>
+</body>
+</html>
